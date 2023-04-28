@@ -2,6 +2,18 @@
 
 @import url(./vendor/fonts/fonts.css);
 
+@import url(./blocks/account/account.css);
+
+@import url(./blocks/account/__title/account__title.css);
+
+@import url(./blocks/account/__form/account__form.css);
+
+@import url(./blocks/account/__input/account__input.css);
+
+@import url(./blocks/account/__button/account__button.css);
+
+@import url(./blocks/account/__link/account__link.css);
+
 @import url(./blocks/page/page.css);
 
 @import url(./blocks/page/__header/page__header.css);
