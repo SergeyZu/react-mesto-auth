@@ -1,7 +1,6 @@
 .account__form {
-  margin: 60px auto 80px;
+  margin-top: 60px;
   display: flex;
   flex-direction: column;
   width: 358px;
-  /* box-sizing: border-box; */
 }
