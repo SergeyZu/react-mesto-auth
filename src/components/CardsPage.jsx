@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import Header from './Header';
+// import Header from './Header';
+import HeaderCardsPage from './HeaderCardsPage';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
@@ -146,7 +147,7 @@ function CardsPage() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header></Header>
+        <HeaderCardsPage />
 
         <Main
           onEditAvatar={handleEditAvatarClick}

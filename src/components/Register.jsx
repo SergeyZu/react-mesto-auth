@@ -1,8 +1,13 @@
 import PageUnauthorized from './PageUnauthorized';
+import HeaderRegister from './HeaderRegister';
 
 function Register() {
   return (
-    <PageUnauthorized title="Регистрация" buttonText="Зарегистрироваться">
+    <PageUnauthorized
+      component={<HeaderRegister />}
+      title="Регистрация"
+      buttonText="Зарегистрироваться"
+    >
       <a className="account__link" href="#">
         Уже зарегистрированы? Войти
       </a>

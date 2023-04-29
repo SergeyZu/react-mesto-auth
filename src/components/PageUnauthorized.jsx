@@ -1,9 +1,15 @@
 import Header from './Header';
 
-function PageUnauthorized({ title, buttonText, onSubmit, children }) {
+function PageUnauthorized({
+  component,
+  title,
+  buttonText,
+  onSubmit,
+  children,
+}) {
   return (
     <div className="account">
-      <Header />
+      {component}
       <form className="account__form" onSubmit={onSubmit}>
         <h2 className="account__title">{title}</h2>
         <input
