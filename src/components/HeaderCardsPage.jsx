@@ -1,7 +1,11 @@
 import Header from './Header';
 
 function HeaderCardsPage() {
-  return <Header linkText={'Выйти'}>email@mail.com</Header>;
+  return (
+    <Header link={'/sign-in'} linkText={'Выйти'}>
+      email@mail.com
+    </Header>
+  );
 }
 
 export default HeaderCardsPage;

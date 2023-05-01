@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PageUnauthorized from './PageUnauthorized';
 import HeaderRegister from './HeaderRegister';
 
@@ -27,9 +27,9 @@ function Register() {
       title="Регистрация"
       buttonText="Зарегистрироваться"
     >
-      <Link to="/sign-in" className="account__link">
+      <a className="account__link" href="#">
         Уже зарегистрированы? Войти
-      </Link>
+      </a>
     </PageUnauthorized>
   );
 }

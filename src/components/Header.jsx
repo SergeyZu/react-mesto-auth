@@ -1,14 +1,15 @@
+import { Link } from 'react-router-dom';
 import logo from '../images/logo.svg';
 
-function Header({ href, linkText, children }) {
+function Header({ link, linkText, children }) {
   return (
     <header className="header page__header">
       <img className="header__logo" src={logo} alt="Логотип Mesto Russia" />
       <div className="header__group">
         <p className="header__text">{children}</p>
-        <a className="header__link" href={href}>
+        <Link to={link} className="header__link">
           {linkText}
-        </a>
+        </Link>
       </div>
     </header>
   );

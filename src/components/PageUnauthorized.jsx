@@ -5,6 +5,7 @@ function PageUnauthorized({
   title,
   buttonText,
   onSubmit,
+  handleChange,
   children,
 }) {
   return (
@@ -18,7 +19,7 @@ function PageUnauthorized({
           className="account__input"
           name="email"
           type="email"
-          // onChange={handleEmailChange}
+          onChange={handleChange}
           minLength="5"
           maxLength="40"
           required
@@ -29,7 +30,7 @@ function PageUnauthorized({
           className="account__input"
           name="password"
           type="password"
-          // onChange={handlePasswordChange}
+          onChange={handleChange}
           minLength="3"
           maxLength="20"
           required

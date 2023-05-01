@@ -1,7 +1,7 @@
 import Header from './Header';
 
 function HeaderLogin() {
-  return <Header linkText={'Регистрация'} />;
+  return <Header link={'/sign-up'} linkText={'Регистрация'} />;
 }
 
 export default HeaderLogin;
