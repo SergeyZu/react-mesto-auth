@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PageUnauthorized from './PageUnauthorized';
 import HeaderRegister from './HeaderRegister';
 
@@ -26,10 +26,12 @@ function Register() {
       component={<HeaderRegister />}
       title="Регистрация"
       buttonText="Зарегистрироваться"
+      onChange={handleChange}
+      onSubmit={handleSubmit}
     >
-      <a className="account__link" href="#">
+      <Link to="/sign-in" className="account__link">
         Уже зарегистрированы? Войти
-      </a>
+      </Link>
     </PageUnauthorized>
   );
 }

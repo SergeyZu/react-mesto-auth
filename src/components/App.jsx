@@ -8,6 +8,11 @@ import ProtectedRoute from './ProtectedRoute';
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
 
+  function handleLogin(evt) {
+    evt.preventDefault();
+    setLoggedIn({ loggedIn: true });
+  }
+
   return (
     <Routes>
       <Route
@@ -25,7 +30,7 @@ function App() {
         element={<ProtectedRoute element={<CardsPage />} loggedIn={loggedIn} />}
       />
       <Route path="/sign-up" element={<Register />} />
-      <Route path="/sign-in" element={<Login />} />
+      <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} />
       {/* <Route
         path="/sign-up"
         element={

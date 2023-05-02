@@ -1,13 +1,35 @@
-import Header from './Header';
+import { useState } from 'react';
+import * as auth from '../auth';
 
 function PageUnauthorized({
   component,
   title,
   buttonText,
+  emailValue,
+  passwordValue,
+  onChange,
   onSubmit,
-  handleChange,
   children,
 }) {
+  // const [formValue, setformValue] = useState({
+  //   email: '',
+  //   password: '',
+  // });
+
+  // let value;
+
+  // function handleChange(evt) {
+  //   const { name, value } = evt.target;
+
+  //   setformValue({ ...formValue, [name]: value });
+  // }
+
+  // function handleSubmit(evt) {
+  //   evt.preventDefault();
+  //   const { email, password } = formValue;
+  //   auth.register(formValue.email, formValue.password);
+  // }
+
   return (
     <div className="account">
       {component}
@@ -19,7 +41,8 @@ function PageUnauthorized({
           className="account__input"
           name="email"
           type="email"
-          onChange={handleChange}
+          value={emailValue}
+          onChange={onChange}
           minLength="5"
           maxLength="40"
           required
@@ -30,7 +53,8 @@ function PageUnauthorized({
           className="account__input"
           name="password"
           type="password"
-          onChange={handleChange}
+          value={passwordValue}
+          onChange={onChange}
           minLength="3"
           maxLength="20"
           required
