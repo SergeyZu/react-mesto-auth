@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import * as auth from '../auth';
+// import { useState } from 'react';
+// import * as auth from '../auth';
 
 function PageUnauthorized({
   component,

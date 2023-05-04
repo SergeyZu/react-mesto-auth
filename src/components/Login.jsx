@@ -5,7 +5,7 @@ import HeaderLogin from './HeaderLogin';
 import * as auth from '../auth';
 
 function Login({ handleLogin }) {
-  const [formValue, setformValue] = useState({
+  const [formValue, setFormValue] = useState({
     email: '',
     password: '',
   });
@@ -13,21 +13,23 @@ function Login({ handleLogin }) {
   const navigate = useNavigate();
 
   function handleChange(evt) {
-    const { name, value } = evt.target;
+    const input = evt.target;
 
-    setformValue({ ...formValue, [name]: value });
+    setFormValue({ ...formValue, [input.name]: input.value });
   }
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    console.log(formValue);
     if (!formValue.email || !formValue.password) {
       return;
     }
     auth
       .authorize(formValue.email, formValue.password)
       .then((data) => {
-        if (data.jwt) {
-          setformValue({ email: '', password: '' });
+        console.log(data);
+        if (data.token) {
+          setFormValue({ email: '', password: '' });
           handleLogin();
           navigate('/cards', { replace: true });
         }
