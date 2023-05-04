@@ -31,14 +31,14 @@ function PageUnauthorized({
   // }
 
   return (
-    <div className="account">
+    <div className="auth">
       {component}
-      <form className="account__form" onSubmit={onSubmit}>
-        <h2 className="account__title">{title}</h2>
+      <form className="auth__form" onSubmit={onSubmit}>
+        <h2 className="auth__title">{title}</h2>
         <input
           placeholder="Email"
           id="email-input"
-          className="account__input"
+          className="auth__input"
           name="email"
           type="email"
           value={emailValue}
@@ -50,7 +50,7 @@ function PageUnauthorized({
         <input
           placeholder="Пароль"
           id="password-input"
-          className="account__input"
+          className="auth__input"
           name="password"
           type="password"
           value={passwordValue}
@@ -59,7 +59,7 @@ function PageUnauthorized({
           maxLength="20"
           required
         />
-        <button className="account__button" type="submit">
+        <button className="auth__button" type="submit">
           {buttonText}
         </button>
         {children}

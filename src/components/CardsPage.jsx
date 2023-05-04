@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-// import Header from './Header';
-import HeaderCardsPage from './HeaderCardsPage';
+import Header from './Header';
+// import HeaderCardsPage from './HeaderCardsPage';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
@@ -147,7 +147,9 @@ function CardsPage() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <HeaderCardsPage />
+        <Header link={'/sign-in'} linkText={'Выйти'}>
+          email@mail.com
+        </Header>
 
         <Main
           onEditAvatar={handleEditAvatarClick}

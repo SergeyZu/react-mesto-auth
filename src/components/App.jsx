@@ -6,11 +6,11 @@ import Login from './Login';
 import ProtectedRoute from './ProtectedRoute';
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleLogin(evt) {
     evt.preventDefault();
-    setLoggedIn({ loggedIn: true });
+    setIsLoggedIn({ isLoggedIn: true });
   }
 
   return (
@@ -18,7 +18,7 @@ function App() {
       <Route
         path="/"
         element={
-          !loggedIn ? (
+          !isLoggedIn ? (
             <Navigate to="/sign-in" replace />
           ) : (
             <Navigate to="/cards" replace />
@@ -27,10 +27,14 @@ function App() {
       />
       <Route
         path="/cards"
-        element={<ProtectedRoute element={<CardsPage />} loggedIn={loggedIn} />}
+        element={
+          <ProtectedRoute element={<CardsPage />} isLoggedIn={isLoggedIn} />
+        }
       />
+      {/* <Route path="/cards" element={<CardsPage />} /> */}
       <Route path="/sign-up" element={<Register />} />
-      <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} />
+      <Route path="/sign-in" element={<Login />} />
+      {/* <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} /> */}
       {/* <Route
         path="/sign-up"
         element={
