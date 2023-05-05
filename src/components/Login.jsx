@@ -33,7 +33,7 @@
 import { useState } from 'react';
 import Header from './Header';
 
-const Login = ({ handleSubmit }) => {
+const Login = ({ loginUser }) => {
   const [formValue, setFormValue] = useState({ email: '', password: '' });
 
   const handleChange = (evt) => {
@@ -42,10 +42,15 @@ const Login = ({ handleSubmit }) => {
     setFormValue({ ...formValue, [input.name]: input.value });
   };
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    loginUser(formValue);
+  };
+
   return (
-    <div onSubmit={handleSubmit} className="auth">
+    <div className="auth">
       <Header link={'/sign-up'} linkText={'Регистрация'} />
-      <form className="auth__form">
+      <form onSubmit={handleSubmit} className="auth__form">
         <h2 className="auth__title">Вход</h2>
         <input
           placeholder="Email"

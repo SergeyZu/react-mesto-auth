@@ -1,17 +1,76 @@
-import { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import CardsPage from './CardsPage';
 import Register from './Register';
 import Login from './Login';
 import ProtectedRoute from './ProtectedRoute';
+import * as auth from '../auth';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [token, setToken] = useState('');
+  const [userData, setUserData] = useState({
+    email: '',
+    password: '',
+  });
+  // const [isLoading, setIsLoading] = useState(true);
 
-  function handleLogin(evt) {
-    evt.preventDefault();
-    setIsLoggedIn({ isLoggedIn: true });
-  }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setToken(token);
+  }, []);
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    auth
+      .getUserData(token)
+      .then((user) => {
+        setUserData(user);
+        setIsLoggedIn(true);
+        navigate('/cards');
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [token, navigate]);
+
+  const registerUser = ({ email, password }) => {
+    auth
+      .register(email, password)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const loginUser = ({ email, password }) => {
+    auth
+      .authorize(email, password)
+      .then((res) => {
+        localStorage.setItem('token', res.token);
+        setToken(res.token);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const logOut = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+    setToken('');
+    setUserData({ email: '', password: '' });
+  };
+
+  // if (isLoading) {
+  //   return <div>Загрузка...</div>;
+  // }
 
   return (
     <Routes>
@@ -28,18 +87,26 @@ function App() {
       <Route
         path="/cards"
         element={
-          <ProtectedRoute element={<CardsPage />} isLoggedIn={isLoggedIn} />
+          <ProtectedRoute
+            component={CardsPage}
+            loggedIn={isLoggedIn}
+            userData={userData}
+          />
         }
       />
+
       {/* <Route path="/cards" element={<CardsPage />} /> */}
-      <Route path="/sign-up" element={<Register />} />
-      <Route path="/sign-in" element={<Login />} />
+
+      {/* <Route path="/sign-up" element={<Register />} />
+      <Route path="/sign-in" element={<Login />} /> */}
+
       {/* <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} /> */}
-      {/* <Route
+
+      <Route
         path="/sign-up"
         element={
           <div className="registerContainer">
-            <Register />
+            <Register registerUser={registerUser} />
           </div>
         }
       />
@@ -47,10 +114,10 @@ function App() {
         path="/sign-in"
         element={
           <div className="loginContainer">
-            <Login />
+            <Login loginUser={loginUser} />
           </div>
         }
-      /> */}
+      />
     </Routes>
   );
 }
