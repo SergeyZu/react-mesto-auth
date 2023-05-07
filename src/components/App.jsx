@@ -95,6 +95,7 @@ function App() {
             loggedIn={isLoggedIn}
             logOut={logOut}
             userData={userData}
+            email={email}
           />
         }
       />

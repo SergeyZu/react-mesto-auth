@@ -10,7 +10,7 @@ import ImagePopup from './ImagePopup';
 import { api } from '../utils/api';
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
-function CardsPage({ logOut }) {
+function CardsPage({ logOut, email }) {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
@@ -147,7 +147,7 @@ function CardsPage({ logOut }) {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
         <Header onClick={logOut} link={'/sign-in'} linkText={'Выйти'}>
-          email@mail.com
+          {email}
         </Header>
 
         <Main
