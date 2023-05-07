@@ -13,6 +13,7 @@ function App() {
     email: '',
     password: '',
   });
+  const [email, setEmail] = useState('');
   // const [isLoading, setIsLoading] = useState(true);
 
   const navigate = useNavigate();
@@ -53,8 +54,9 @@ function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-        localStorage.setItem('token', res.token);
+        localStorage.setItem('jwt', res.token);
         setToken(res.token);
+        setEmail(email);
       })
       .catch((err) => {
         console.log(err);
@@ -62,10 +64,11 @@ function App() {
   };
 
   const logOut = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('jwt');
     setIsLoggedIn(false);
     setToken('');
     setUserData({ email: '', password: '' });
+    navigate('/sign-in');
   };
 
   // if (isLoading) {
@@ -90,6 +93,7 @@ function App() {
           <ProtectedRoute
             component={CardsPage}
             loggedIn={isLoggedIn}
+            logOut={logOut}
             userData={userData}
           />
         }
