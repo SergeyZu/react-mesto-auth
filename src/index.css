@@ -106,6 +106,10 @@
 
 @import url(./blocks/popup/__title/popup__title.css);
 
+@import url(./blocks/popup/__title/_bottom/popup__title_bottom.css);
+
+@import url(./blocks/popup/__icon/popup__icon.css);
+
 @import url(./blocks/popup/__title/_low-form/popup__title_low-form.css);
 
 @import url(./blocks/popup/__title/_tipe/_image/popup__title_type_image.css);

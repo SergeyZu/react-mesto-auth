@@ -5,6 +5,9 @@ import Register from './Register';
 import Login from './Login';
 import ProtectedRoute from './ProtectedRoute';
 import * as auth from '../auth';
+import InfoTooltip from './InfoTooltip';
+import success from '../images/success.svg';
+import fail from '../images/fail.svg';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,12 +17,15 @@ function App() {
     password: '',
   });
   const [email, setEmail] = useState('');
-  // const [isLoading, setIsLoading] = useState(true);
+  const [isOpenTooltip, setIsOpenTooltip] = useState(false);
+  const [titleTooltip, setTitleTooltip] = useState('');
+  const [imageTooltip, setImageTooltip] = useState('');
+  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('jwt');
     setToken(token);
   }, []);
 
@@ -43,10 +49,19 @@ function App() {
     auth
       .register(email, password)
       .then((res) => {
+        setIsRegistrationSuccess(true);
+        setImageTooltip(success);
+        setTitleTooltip('Вы успешно зарегистрировались!');
         console.log(res);
       })
       .catch((err) => {
+        setIsRegistrationSuccess(false);
+        setImageTooltip(fail);
+        setTitleTooltip('Что-то пошло не так! Попробуйте еще раз.');
         console.log(err);
+      })
+      .finally(() => {
+        setIsOpenTooltip(true);
       });
   };
 
@@ -59,6 +74,10 @@ function App() {
         setEmail(email);
       })
       .catch((err) => {
+        setIsRegistrationSuccess(false);
+        setImageTooltip(fail);
+        setTitleTooltip('Что-то пошло не так! Попробуйте еще раз.');
+        setIsOpenTooltip(true);
         console.log(err);
       });
   };
@@ -71,59 +90,77 @@ function App() {
     navigate('/sign-in');
   };
 
-  // if (isLoading) {
-  //   return <div>Загрузка...</div>;
-  // }
+  const setInfoTooltip = () => {
+    if (isRegistrationSuccess) {
+      return {
+        title: 'Вы&nbsp;успешно зарегистрировались',
+        img: { success },
+        alt: 'ОК',
+      };
+    } else {
+      return {
+        title:
+          'Что-то&nbsp;пошло&nbsp;не&nbsp;так! Попробуйте&nbsp;еще&nbsp;раз',
+        img: { fail },
+        alt: 'Ошибка',
+      };
+    }
+  };
+
+  const closeTooltip = () => {
+    setIsOpenTooltip(false);
+  };
 
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          !isLoggedIn ? (
-            <Navigate to="/sign-in" replace />
-          ) : (
-            <Navigate to="/cards" replace />
-          )
-        }
-      />
-      <Route
-        path="/cards"
-        element={
-          <ProtectedRoute
-            component={CardsPage}
-            loggedIn={isLoggedIn}
-            logOut={logOut}
-            userData={userData}
-            email={email}
-          />
-        }
-      />
+    <>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            !isLoggedIn ? (
+              <Navigate to="/sign-in" replace />
+            ) : (
+              <Navigate to="/cards" replace />
+            )
+          }
+        />
+        <Route
+          path="/cards"
+          element={
+            <ProtectedRoute
+              component={CardsPage}
+              loggedIn={isLoggedIn}
+              logOut={logOut}
+              userData={userData}
+              email={email}
+            />
+          }
+        />
+        <Route
+          path="/sign-up"
+          element={
+            <div className="registerContainer">
+              <Register registerUser={registerUser} />
+            </div>
+          }
+        />
+        <Route
+          path="/sign-in"
+          element={
+            <div className="loginContainer">
+              <Login loginUser={loginUser} />
+            </div>
+          }
+        />
+      </Routes>
 
-      {/* <Route path="/cards" element={<CardsPage />} /> */}
-
-      {/* <Route path="/sign-up" element={<Register />} />
-      <Route path="/sign-in" element={<Login />} /> */}
-
-      {/* <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} /> */}
-
-      <Route
-        path="/sign-up"
-        element={
-          <div className="registerContainer">
-            <Register registerUser={registerUser} />
-          </div>
-        }
+      <InfoTooltip
+        isOpen={isOpenTooltip}
+        onClose={closeTooltip}
+        title={titleTooltip}
+        img={imageTooltip}
       />
-      <Route
-        path="/sign-in"
-        element={
-          <div className="loginContainer">
-            <Login loginUser={loginUser} />
-          </div>
-        }
-      />
-    </Routes>
+    </>
   );
 }
 

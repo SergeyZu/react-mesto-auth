@@ -1,6 +1,6 @@
-const BASE_URL = 'http://104.131.160.75:3000';
+// const BASE_URL = 'http://104.131.160.75:3000';
 
-// const BASE_URL = 'https://auth.nomoreparties.co';
+const BASE_URL = 'https://auth.nomoreparties.co';
 
 const makeRequest = (url, method, body, token) => {
   const options = {
