@@ -20,7 +20,7 @@ function App() {
   const [isOpenTooltip, setIsOpenTooltip] = useState(false);
   const [titleTooltip, setTitleTooltip] = useState('');
   const [imageTooltip, setImageTooltip] = useState('');
-  const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
+  // const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
 
   const navigate = useNavigate();
 
@@ -49,13 +49,14 @@ function App() {
     auth
       .register(email, password)
       .then((res) => {
-        setIsRegistrationSuccess(true);
+        // setIsRegistrationSuccess(true);
         setImageTooltip(success);
         setTitleTooltip('Вы успешно зарегистрировались!');
+        navigate('/sign-in');
         console.log(res);
       })
       .catch((err) => {
-        setIsRegistrationSuccess(false);
+        // setIsRegistrationSuccess(false);
         setImageTooltip(fail);
         setTitleTooltip('Что-то пошло не так! Попробуйте еще раз.');
         console.log(err);
@@ -74,7 +75,7 @@ function App() {
         setEmail(email);
       })
       .catch((err) => {
-        setIsRegistrationSuccess(false);
+        // setIsRegistrationSuccess(false);
         setImageTooltip(fail);
         setTitleTooltip('Что-то пошло не так! Попробуйте еще раз.');
         setIsOpenTooltip(true);
@@ -90,22 +91,22 @@ function App() {
     navigate('/sign-in');
   };
 
-  const setInfoTooltip = () => {
-    if (isRegistrationSuccess) {
-      return {
-        title: 'Вы&nbsp;успешно зарегистрировались',
-        img: { success },
-        alt: 'ОК',
-      };
-    } else {
-      return {
-        title:
-          'Что-то&nbsp;пошло&nbsp;не&nbsp;так! Попробуйте&nbsp;еще&nbsp;раз',
-        img: { fail },
-        alt: 'Ошибка',
-      };
-    }
-  };
+  // const setInfoTooltip = () => {
+  //   if (isRegistrationSuccess) {
+  //     return {
+  //       title: 'Вы&nbsp;успешно зарегистрировались',
+  //       img: { success },
+  //       alt: 'ОК',
+  //     };
+  //   } else {
+  //     return {
+  //       title:
+  //         'Что-то&nbsp;пошло&nbsp;не&nbsp;так! Попробуйте&nbsp;еще&nbsp;раз',
+  //       img: { fail },
+  //       alt: 'Ошибка',
+  //     };
+  //   }
+  // };
 
   const closeTooltip = () => {
     setIsOpenTooltip(false);
