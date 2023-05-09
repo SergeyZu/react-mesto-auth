@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from './Header';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
+import AuthenticationForm from './AuthenticationForm';
 
 const Register = ({ registerUser }) => {
   const [formValue, setFormValue] = useState({ email: '', password: '' });
@@ -26,37 +27,13 @@ const Register = ({ registerUser }) => {
   return (
     <div className="auth">
       <Header onClick={goToLogin} buttonText={'Войти'} />
-      {/* <Header link={'/sign-in'} linkText={'Войти'} /> */}
-      <form onSubmit={handleSubmit} className="auth__form">
-        <h2 className="auth__title">Регистрация</h2>
-        <input
-          placeholder="Email"
-          id="email-input"
-          className="auth__input"
-          name="email"
-          type="email"
-          value={formValue.email}
-          onChange={handleChange}
-          minLength="5"
-          maxLength="40"
-          required
-        />
-        <input
-          placeholder="Пароль"
-          id="password-input"
-          className="auth__input"
-          name="password"
-          type="password"
-          value={formValue.password}
-          onChange={handleChange}
-          minLength="3"
-          maxLength="20"
-          required
-        />
-        <button className="auth__button" type="submit">
-          Зарегистрироваться
-        </button>
-      </form>
+      <AuthenticationForm
+        onSubmit={handleSubmit}
+        title={'Регистрация'}
+        value={formValue}
+        onChange={handleChange}
+        buttonText={'Зарегистрироваться'}
+      />
       <div className="auth__text-block">
         <p className="auth__text">Уже зарегистрированы?</p>
         <Link to="/sign-in" className="auth__link">

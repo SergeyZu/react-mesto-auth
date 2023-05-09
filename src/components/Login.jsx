@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import Header from './Header';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
+import AuthenticationForm from './AuthenticationForm';
 
 const Login = ({ loginUser }) => {
   const [formValue, setFormValue] = useState({ email: '', password: '' });
@@ -25,36 +26,13 @@ const Login = ({ loginUser }) => {
   return (
     <div className="auth">
       <Header onClick={goToRegister} buttonText={'Регистрация'} />
-      <form onSubmit={handleSubmit} className="auth__form">
-        <h2 className="auth__title">Вход</h2>
-        <input
-          placeholder="Email"
-          id="email-input"
-          className="auth__input"
-          name="email"
-          type="email"
-          value={formValue.email}
-          onChange={handleChange}
-          minLength="5"
-          maxLength="40"
-          required
-        />
-        <input
-          placeholder="Пароль"
-          id="password-input"
-          className="auth__input"
-          name="password"
-          type="password"
-          value={formValue.password}
-          onChange={handleChange}
-          minLength="3"
-          maxLength="20"
-          required
-        />
-        <button className="auth__button" type="submit">
-          Войти
-        </button>
-      </form>
+      <AuthenticationForm
+        onSubmit={handleSubmit}
+        title={'Вход'}
+        value={formValue}
+        onChange={handleChange}
+        buttonText={'Войти'}
+      />
     </div>
   );
 };
