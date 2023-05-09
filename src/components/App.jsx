@@ -20,12 +20,11 @@ function App() {
   const [isOpenTooltip, setIsOpenTooltip] = useState(false);
   const [titleTooltip, setTitleTooltip] = useState('');
   const [imageTooltip, setImageTooltip] = useState('');
-  // const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('jwt');
+    const token = localStorage.getItem('token');
     setToken(token);
   }, []);
 
@@ -49,14 +48,12 @@ function App() {
     auth
       .register(email, password)
       .then((res) => {
-        // setIsRegistrationSuccess(true);
         setImageTooltip(success);
         setTitleTooltip('Вы успешно зарегистрировались!');
         navigate('/sign-in');
         console.log(res);
       })
       .catch((err) => {
-        // setIsRegistrationSuccess(false);
         setImageTooltip(fail);
         setTitleTooltip('Что-то пошло не так! Попробуйте еще раз.');
         console.log(err);
@@ -70,12 +67,11 @@ function App() {
     auth
       .authorize(email, password)
       .then((res) => {
-        localStorage.setItem('jwt', res.token);
+        localStorage.setItem('token', res.token);
         setToken(res.token);
         setEmail(email);
       })
       .catch((err) => {
-        // setIsRegistrationSuccess(false);
         setImageTooltip(fail);
         setTitleTooltip('Что-то пошло не так! Попробуйте еще раз.');
         setIsOpenTooltip(true);
@@ -84,7 +80,7 @@ function App() {
   };
 
   const logOut = () => {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem('token');
     setIsLoggedIn(false);
     setToken('');
     setUserData({ email: '', password: '' });
