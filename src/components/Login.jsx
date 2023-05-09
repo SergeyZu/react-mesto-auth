@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Header from './Header';
+import { useNavigate } from 'react-router-dom';
 
 const Login = ({ loginUser }) => {
   const [formValue, setFormValue] = useState({ email: '', password: '' });
@@ -15,9 +16,15 @@ const Login = ({ loginUser }) => {
     loginUser(formValue);
   };
 
+  const navigate = useNavigate();
+
+  const goToRegister = () => {
+    navigate('/sign-up');
+  };
+
   return (
     <div className="auth">
-      <Header link={'/sign-up'} linkText={'Регистрация'} />
+      <Header onClick={goToRegister} buttonText={'Регистрация'} />
       <form onSubmit={handleSubmit} className="auth__form">
         <h2 className="auth__title">Вход</h2>
         <input

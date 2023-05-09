@@ -146,7 +146,7 @@ function CardsPage({ logOut, email }) {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header onClick={logOut} link={'/sign-in'} linkText={'Выйти'}>
+        <Header onClick={logOut} buttonText={'Выйти'}>
           {email}
         </Header>
 
