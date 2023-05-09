@@ -38,6 +38,7 @@ function App() {
         setUserData(user);
         setIsLoggedIn(true);
         navigate('/cards');
+        setEmail(user.data.email);
       })
       .catch((err) => {
         console.log(err);
@@ -69,7 +70,7 @@ function App() {
       .then((res) => {
         localStorage.setItem('token', res.token);
         setToken(res.token);
-        setEmail(email);
+        // setEmail(email);
       })
       .catch((err) => {
         setImageTooltip(fail);

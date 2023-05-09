@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import Card from "./Card.jsx";
-import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { useContext } from 'react';
+import Card from './Card.jsx';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main({
   onEditAvatar,
@@ -22,13 +22,14 @@ function Main({
               className="profile__avatar"
               src={currentUser.avatar}
               alt="Аватар"
+              onClick={onEditAvatar}
             />
             <div className="profile__avatar-edit-button-container">
-              <button
+              <div
                 className="profile__avatar-edit-button"
-                type="button"
-                onClick={onEditAvatar}
-              ></button>
+                // type="button"
+                // onClick={onEditAvatar}
+              ></div>
             </div>
           </div>
           <div className="profile__text-block">

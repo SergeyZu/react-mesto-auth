@@ -7,7 +7,7 @@ function Header({ buttonText, onClick, children }) {
       <img className="header__logo" src={logo} alt="Логотип Mesto Russia" />
       <div className="header__group">
         <p className="header__text">{children}</p>
-        <button onClick={onClick} className="header__link">
+        <button onClick={onClick} className="header__button">
           {buttonText}
         </button>
       </div>
