@@ -8,6 +8,7 @@ import * as auth from '../auth';
 import InfoTooltip from './InfoTooltip';
 import success from '../images/success.svg';
 import fail from '../images/fail.svg';
+import Loader from './Loader';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -17,6 +18,7 @@ function App() {
     password: '',
   });
   const [email, setEmail] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
   const [isOpenTooltip, setIsOpenTooltip] = useState(false);
   const [titleTooltip, setTitleTooltip] = useState('');
   const [imageTooltip, setImageTooltip] = useState('');
@@ -42,6 +44,9 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, [token, navigate]);
 
@@ -88,26 +93,13 @@ function App() {
     navigate('/sign-in');
   };
 
-  // const setInfoTooltip = () => {
-  //   if (isRegistrationSuccess) {
-  //     return {
-  //       title: 'Вы&nbsp;успешно зарегистрировались',
-  //       img: { success },
-  //       alt: 'ОК',
-  //     };
-  //   } else {
-  //     return {
-  //       title:
-  //         'Что-то&nbsp;пошло&nbsp;не&nbsp;так! Попробуйте&nbsp;еще&nbsp;раз',
-  //       img: { fail },
-  //       alt: 'Ошибка',
-  //     };
-  //   }
-  // };
-
   const closeTooltip = () => {
     setIsOpenTooltip(false);
   };
+
+  if (isLoading) {
+    return <Loader />;
+  }
 
   return (
     <>

@@ -135,3 +135,7 @@
 @import url(./blocks/popup/__button/popup__button.css);
 
 @import url(./blocks/popup/__button/_disabled/popup__button_disabled.css);
+
+@import url(./blocks/loader/loader.css);
+
+@import url(./blocks/loader/loader-container.css);
