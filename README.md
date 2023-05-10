@@ -6,4 +6,4 @@
 Файловая структура проекта построена по принципам **БЭМ**.
 Проект собран с помощью **SPA**.
 
-**Адрес проекта** на GitHub: https://sergeyzu.github.io/mesto-react/
+**Адрес проекта** на GitHub: https://sergeyzu.github.io/react-mesto-auth/
