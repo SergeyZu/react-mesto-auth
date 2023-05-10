@@ -1,0 +1,9 @@
+// Imports
+import ___CSS_LOADER_API_SOURCEMAP_IMPORT___ from "../../../../../node_modules/css-loader/dist/runtime/sourceMaps.js";
+import ___CSS_LOADER_API_IMPORT___ from "../../../../../node_modules/css-loader/dist/runtime/api.js";
+var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".popup__container_low-form {\r\n    grid-template-rows: 32px 181px;\r\n}\r\n\r\n@media screen and (max-width: 650px) {\r\n    .popup__container_low-form {\r\n        grid-template-rows: 20px 181px;\r\n    }\r\n}", "",{"version":3,"sources":["webpack://./src/blocks/popup/__container/_low-form/popup__container_low-form"],"names":[],"mappings":"AAAA;IACI,8BAA8B;AAClC;;AAEA;IACI;QACI,8BAA8B;IAClC;AACJ","sourcesContent":[".popup__container_low-form {\r\n    grid-template-rows: 32px 181px;\r\n}\r\n\r\n@media screen and (max-width: 650px) {\r\n    .popup__container_low-form {\r\n        grid-template-rows: 20px 181px;\r\n    }\r\n}"],"sourceRoot":""}]);
+// Exports
+___CSS_LOADER_EXPORT___.locals = {};
+export default ___CSS_LOADER_EXPORT___;
