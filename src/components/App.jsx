@@ -97,9 +97,9 @@ function App() {
     setIsOpenTooltip(false);
   };
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   return (
     <>
