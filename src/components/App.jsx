@@ -28,6 +28,10 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem('token');
     setToken(token);
+
+    if (!token) {
+      setIsLoading(false);
+    }
   }, []);
 
   useEffect(() => {

@@ -4,12 +4,18 @@ import Header from './Header';
 import AuthenticationForm from './AuthenticationForm';
 
 const Login = ({ loginUser }) => {
-  const [formValue, setFormValue] = useState({ email: '', password: '' });
+  const [formValue, setFormValue] = useState({
+    email: '',
+    password: '',
+  });
 
   const handleChange = (evt) => {
     const input = evt.target;
 
-    setFormValue({ ...formValue, [input.name]: input.value });
+    setFormValue({
+      ...formValue,
+      [input.name]: input.value,
+    });
   };
 
   const handleSubmit = (evt) => {
