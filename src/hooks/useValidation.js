@@ -1,16 +1,10 @@
 import { useState } from 'react';
 
-const useForm = (initialState) => {
-  const [form, setForm] = useState(initialState);
+const useValidation = () => {
   const [errors, setErrors] = useState({});
 
   const handleChange = (evt) => {
     const input = evt.target;
-
-    setForm({
-      ...form,
-      [input.name]: input.value,
-    });
 
     setErrors({
       ...errors,
@@ -18,7 +12,7 @@ const useForm = (initialState) => {
     });
   };
 
-  return { form, setForm, errors, handleChange };
+  return { errors, handleChange };
 };
 
-export default useForm;
+export default useValidation;

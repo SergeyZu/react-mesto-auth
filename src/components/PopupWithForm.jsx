@@ -8,7 +8,7 @@ function PopupWithForm({
   children,
 }) {
   return (
-    <section className={`popup popup_type_${name} ${isOpen && "popup_opened"}`}>
+    <section className={`popup popup_type_${name} ${isOpen && 'popup_opened'}`}>
       <div className="popup__container">
         <button
           className="popup__close-button"
@@ -19,6 +19,7 @@ function PopupWithForm({
           className="popup__content popup__form"
           name={name}
           onSubmit={onSubmit}
+          noValidate
         >
           <h2 className="popup__title">{title}</h2>
           {children}
